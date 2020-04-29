@@ -24,6 +24,7 @@ public:
     bool isLoggedIn() const;
     bool receivedLoginStatus() const;
     void cleanup();
+    rfa::common::RFA_String getStatusText() const;
 
     rfa::common::Handle             *_pLoginHandle;
 
@@ -36,6 +37,7 @@ private:
     bool                            _receivedLoginStatus;
     rfa::logger::ComponentLogger    &_componentLogger;
     rfa::common::RFA_String         _log;
+    rfa::common::RFA_String         _statusText;
 };
 
 #endif
