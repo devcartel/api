@@ -414,6 +414,7 @@ void Pyrfa::login(object const &argv1=object(), object const &argv2=object(), ob
     if(!_pLoginHandler->isLoggedIn()) {
         _log = "[Pyrfa::login] Login failed. Please check data permission. (username: ";
         _log.append(_userName.c_str());
+        _log.append("; statusText: " + _pLoginHandler->getStatusText());
         _log.append(")");
         _logError(_log.c_str());
         //cleanUp();

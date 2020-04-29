@@ -17,7 +17,8 @@ _client(client),
 _isLoggedIn(false),
 _receivedLoginStatus(false),
 _componentLogger(componentLogger),
-_log("")
+_log(""),
+_statusText("")
 {
 }
 
@@ -33,7 +34,8 @@ _client(client),
 _isLoggedIn(false),
 _receivedLoginStatus(false),
 _componentLogger(componentLogger),
-_log("")
+_log(""),
+_statusText("")
 {
 }
 
@@ -183,6 +185,7 @@ void LoginHandler::processResponse( const rfa::message::RespMsg& respMsg){
             {
                 _receivedLoginStatus = true;
                 const rfa::common::RespStatus & status = respMsg.getRespStatus();
+                _statusText.append(status.getStatusText().c_str());
                 if (( status.getStreamState() == rfa::common::RespStatus::ClosedEnum ) ||
                     ( status.getStreamState() == rfa::common::RespStatus::ClosedRecoverEnum ) ||
                     ( respMsg.getRespStatus().getStatusCode() == rfa::common::RespStatus::NotAuthorizedEnum))
@@ -245,4 +248,8 @@ bool LoginHandler::isLoggedIn() const {
 
 bool LoginHandler::receivedLoginStatus() const {
     return _receivedLoginStatus;
+}
+
+rfa::common::RFA_String LoginHandler::getStatusText() const {
+    return _statusText;
 }
